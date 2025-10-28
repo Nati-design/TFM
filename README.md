@@ -1,7 +1,9 @@
 # TFM
-Código usado en el TFM: "Comparación de técnicas exactas y heurísticas para la optimización de rutas de empresas de reparto de última milla"
+Código usado en el TFM: "Comparación de técnicas exactas y heurísticas para la optimización de rutas de empresas de reparto de última milla".
 
 1. dataset_dhl.pkl contiene los datos usados en los programas.
 2. Open_dataset.ipynb abre los datos y realiza modificaciones sobre ellos, dando lugar al archivo dataset_actualizado.pkl.
 3. dataset_actualizado.pkl contiene los datos modificados.
-4. main_program.ipynb resuelve el problema de optimización EVRT.
+4. main_program.ipynb resuelve el problema de optimización EVRT de forma directa.
+5. neares_neighbour.ipynb resuelve el  problema de optimización EVRT con el algoritmo del camino más corto.
+6. Representacions.ipynb contiene el código para las representaciones incluidas en el TFM.
