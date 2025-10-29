@@ -5,6 +5,6 @@ Código usado en el TFM: "Comparación de técnicas exactas y heurísticas para 
 2. Open_dataset.ipynb abre los datos y realiza modificaciones sobre ellos, dando lugar al archivo dataset_actualizado.pkl.
 3. dataset_actualizado.pkl contiene los datos modificados.
 4. main_program.ipynb resuelve el problema de optimización EVRT de forma directa.
-5. neares_neighbour.ipynb resuelve el  problema de optimización EVRT con el algoritmo del vecino más próximo (sin tener en cuenta los precios).
-6. neares_neighbour_con_cargadores.ipynb resuelve el  problema de optimización EVRT con el algoritmo del vecino más próximo (versión mejorada).
+5. nearest_neighbour.ipynb resuelve el  problema de optimización EVRT con el algoritmo del vecino más próximo (sin tener en cuenta los precios).
+6. nearest_neighbour_con_cargadores.ipynb resuelve el  problema de optimización EVRT con el algoritmo del vecino más próximo (versión mejorada).
 7. Representacions.ipynb contiene el código para las representaciones incluidas en el TFM.
