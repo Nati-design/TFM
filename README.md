@@ -7,4 +7,5 @@ Código usado en el TFM: "Comparación de técnicas exactas y heurísticas para 
 4. main_program.ipynb resuelve el problema de optimización EVRT de forma directa.
 5. nearest_neighbour.ipynb resuelve el  problema de optimización EVRT con el algoritmo del vecino más próximo (sin tener en cuenta los precios).
 6. nearest_neighbour_con_cargadores.ipynb resuelve el  problema de optimización EVRT con el algoritmo del vecino más próximo (versión mejorada).
-7. Representacions.ipynb contiene el código para las representaciones incluidas en el TFM.
+7. Lin-Kernighan.ipynb resuelve el problema de optimización EVRT con el algoritmo k-opt.
+8. Representacions.ipynb contiene el código para las representaciones incluidas en el TFM.
