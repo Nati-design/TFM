@@ -43,21 +43,25 @@ for pkl_file in dataset_folder.glob('*.pkl'):
     start_time = time.perf_counter()
     solution = exact_model(instance)
     exec_time = time.perf_counter() - start_time
-    # Save solution pickle
-    solution.execution_time = exec_time
-    solution.save(
-        filepath = os.path.join(results_folder, 'gurobi', pkl_file.stem + '_solution.pkl')
-        )
-    solution.plot_vrp_solution(
-                               save_path=os.path.join(results_folder, 'gurobi', pkl_file.stem + '_solution.html')
-                               )
 
-    summary_results.append({
-        'instance_name': pkl_file.stem,
-        'algorithm': 'gurobi',
-        'execution_time': exec_time,
-        'cost': solution.total_cost
-    })
+    # Si no hay solución, saltar esta instancia para Gurobi
+    if solution is None:
+        print(f"Gurobi no encontró solución factible para {pkl_file.stem}.")
+    else:
+        solution.execution_time = exec_time
+        solution.save(
+            filepath=os.path.join(results_folder, 'gurobi', pkl_file.stem + '_solution.pkl')
+        )
+        solution.plot_vrp_solution(
+            save_path=os.path.join(results_folder, 'gurobi', pkl_file.stem + '_solution.html')
+        )
+        summary_results.append({
+            'instance_name': pkl_file.stem,
+            'algorithm': 'gurobi',
+            'execution_time': exec_time,
+            'cost': solution.total_cost
+        })
+
 
     # Solve using nearest_neighbour and measure execution time        
     start_time = time.perf_counter()
