@@ -219,20 +219,32 @@ def exact_model(vrp: VRPInstance, max_time_per_route=15*60, M=1e5, epsilon = 1e-
     # Caso 1: modelo infactible
     if status == GRB.INFEASIBLE:
         print("Model infeasible")
-        # Opcional: guardar IIS para depurar
+        # Opcional: depurar IIS
         # model.computeIIS()
         # model.write("model.ilp")
         # model.write("model.ilp.iis")
         return None
 
-    # Caso 2: hay solución (óptima, subóptima o por límite de tiempo)
-    elif status in [GRB.OPTIMAL, GRB.SUBOPTIMAL, GRB.TIME_LIMIT]:
+    # Caso 2: ha llegado a límite de tiempo
+    elif status == GRB.TIME_LIMIT:
+        if model.SolCount == 0:
+            # No hay ninguna solución que leer
+            print("Time limit reached and no feasible solution found.")
+            return None
+        else:
+            print("Time limit reached, using best incumbent solution.")
+
+    # A partir de aquí, asumimos que hay una solución disponible:
+    #  - OPTIMAL
+    #  - SUBOPTIMAL
+    #  - TIME_LIMIT con SolCount > 0
+    if status in [GRB.OPTIMAL, GRB.SUBOPTIMAL, GRB.TIME_LIMIT]:
         solution = VRPSolution(vrp)
         start_parking = vrp.parkings[0]
 
         for m in M:
             arrival_times_m = [
-                (i, t[m, i].X)  # usar .X
+                (i, t[m, i].X)
                 for i in V
                 if t[m, i].X > 1e-6
             ]
@@ -252,7 +264,6 @@ def exact_model(vrp: VRPInstance, max_time_per_route=15*60, M=1e5, epsilon = 1e-
         solution.complete_feasibility()
         return solution
 
-    # Caso 3: otros estados sin solución
-    else:
-        print(f"Model ended with status = {status}, no solution to read.")
-        return None
+    # Caso 3: otros estados sin solución legible
+    print(f"Model ended with status = {status}, no solution to read.")
+    return None
