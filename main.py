@@ -14,8 +14,8 @@ import pandas as pd
 # Creamos una lista de diccionarios
 summary_results = []
 
-dataset_folder = Path('/Users/nataliaalvareztejero/Desktop/CLASE/MASTER/SEGUNDO/Truckster/camion_electrico/datasets/')
-results_folder = Path('/Users/nataliaalvareztejero/Desktop/CLASE/MASTER/SEGUNDO/Truckster/camion_electrico/results/')
+dataset_folder = Path('/Users/nataliaalvareztejero/Desktop/CLASE/MASTER/SEGUNDO/Truckster/Datos/TFM/datasets')
+results_folder = Path('/Users/nataliaalvareztejero/Desktop/CLASE/MASTER/SEGUNDO/Truckster/Datos/TFM/results/')
 csv_file = results_folder / 'solutions_metadata.csv'
 
 # Iterate over all pickle files in the folder
