@@ -106,6 +106,6 @@ for pkl_file in dataset_folder.glob('*.pkl'):
 # Convertimos a DataFrame
 df = pd.DataFrame(summary_results)
 print(df)
-df.to_csv("/Users/nataliaalvareztejero/Desktop/CLASE/MASTER/SEGUNDO/Truckster/camion_electrico/resultados.csv", index=False, encoding="utf-8")
+df.to_csv("/Users/nataliaalvareztejero/Desktop/CLASE/MASTER/SEGUNDO/Truckster/Datos/TFM/resultados.csv", index=False, encoding="utf-8")
 
 
