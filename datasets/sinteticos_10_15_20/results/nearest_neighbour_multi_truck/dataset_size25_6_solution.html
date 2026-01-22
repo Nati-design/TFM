@@ -1,0 +1,1362 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_a39822e877906ac821d0dce03fec9d25 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_a39822e877906ac821d0dce03fec9d25" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_a39822e877906ac821d0dce03fec9d25 = L.map(
+                "map_a39822e877906ac821d0dce03fec9d25",
+                {
+                    center: [41.534174316501655, 2.135036240734831],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 6,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_bb077625569d76ed71352354d2551c0f = L.tileLayer(
+                "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 20,
+  "maxNativeZoom": 20,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors \u0026copy; \u003ca href=\"https://carto.com/attributions\"\u003eCARTO\u003c/a\u003e",
+  "subdomains": "abcd",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_bb077625569d76ed71352354d2551c0f.addTo(map_a39822e877906ac821d0dce03fec9d25);
+        
+    
+            var feature_group_feb3bd877fe6e160e8f0b535549cd6e3 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var poly_line_75ff1af912320e4af5db5a1eeb82b4d9 = L.polyline(
+                [[41.46947990829232, 2.029834358206895], [41.485234215692, 1.9233470116610658], [41.488445655763705, 1.9050837066117885], [41.46794884938134, 1.879416850164663], [41.424495612447984, 1.7720574332525922], [41.29399089096278, 2.0168401297047662], [41.32234199978705, 2.1382321593455953], [41.36248445353974, 2.1402761008483995], [41.45270829389487, 2.1964021139688428], [41.45879636979804, 2.1935492536793193], [41.45631456790823, 2.2277320583721694], [41.461557697230354, 2.2651303135771577], [41.48934987598028, 2.1799109418007965], [41.517977466115944, 2.145497979222555], [41.532797721497644, 2.1943051334355017], [41.60047177742782, 2.254455633152215], [41.59513196060758, 2.3045101890772854], [41.640907398285485, 2.286507321421787], [41.66980906444682, 2.4792064476066673], [41.68798124713392, 2.7329364018775735], [41.69235704127244, 2.732833651339253], [41.94666263918022, 2.284398003140208], [41.78911560945822, 1.9081365835316189], [41.78168875955354, 1.8957243272651072], [41.764450244206685, 1.9006552041821065], [41.65659226664504, 1.856407672644604], [41.33182656585541, 2.134819513516192], [41.32493761671743, 2.1415589107033077], [41.46941404293821, 2.02994703018558]],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.0, "stroke": true, "weight": 4}
+            ).addTo(feature_group_feb3bd877fe6e160e8f0b535549cd6e3);
+        
+    
+            feature_group_feb3bd877fe6e160e8f0b535549cd6e3.addTo(map_a39822e877906ac821d0dce03fec9d25);
+        
+    
+            var feature_group_3da8f88b38690ff28ccea6fa829e50d3 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var marker_2a18ad010ff3eb6e5e609f852f4303e4 = L.marker(
+                [41.46930679260032, 2.029808746545829],
+                {
+}
+            ).addTo(feature_group_3da8f88b38690ff28ccea6fa829e50d3);
+        
+    
+            var icon_e7c05b7891a370d1213742892e06b126 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "home",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_832ccf2461e1f3810b72567478e2473d = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_912bd15fc21f2b3e546cf43575f0ad20 = $(`<div id="html_912bd15fc21f2b3e546cf43575f0ad20" style="width: 100.0%; height: 100.0%;">ES08191 Rubi (parking)</div>`)[0];
+                popup_832ccf2461e1f3810b72567478e2473d.setContent(html_912bd15fc21f2b3e546cf43575f0ad20);
+            
+        
+
+        marker_2a18ad010ff3eb6e5e609f852f4303e4.bindPopup(popup_832ccf2461e1f3810b72567478e2473d)
+        ;
+
+        
+    
+    
+                marker_2a18ad010ff3eb6e5e609f852f4303e4.setIcon(icon_e7c05b7891a370d1213742892e06b126);
+            
+    
+            var marker_c722241b36e6c1217c2d5f96a06d991d = L.marker(
+                [41.32506, 2.141684],
+                {
+}
+            ).addTo(feature_group_3da8f88b38690ff28ccea6fa829e50d3);
+        
+    
+            var icon_38c15adf8ae5e0020afb7ee7f9c13400 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "arrow-down",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_89a9921e48117ea89a1a9efdfea9dc94 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_24de5b7c969cfceb1b04e7934041aea3 = $(`<div id="html_24de5b7c969cfceb1b04e7934041aea3" style="width: 100.0%; height: 100.0%;">ES08040 Barcelona (unloading)</div>`)[0];
+                popup_89a9921e48117ea89a1a9efdfea9dc94.setContent(html_24de5b7c969cfceb1b04e7934041aea3);
+            
+        
+
+        marker_c722241b36e6c1217c2d5f96a06d991d.bindPopup(popup_89a9921e48117ea89a1a9efdfea9dc94)
+        ;
+
+        
+    
+    
+                marker_c722241b36e6c1217c2d5f96a06d991d.setIcon(icon_38c15adf8ae5e0020afb7ee7f9c13400);
+            
+    
+            var marker_0f74ec2dfcd866ce84c0571b25580f87 = L.marker(
+                [41.420342, 2.001644],
+                {
+}
+            ).addTo(feature_group_3da8f88b38690ff28ccea6fa829e50d3);
+        
+    
+            var icon_00c106c6f8ca43d6dceb41cec801f3ab = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "bolt",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_d506724bb552180602552fc3aa86c1a2 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_f1491d6b2aeb948f6d72883a97b33737 = $(`<div id="html_f1491d6b2aeb948f6d72883a97b33737" style="width: 100.0%; height: 100.0%;">IONITY Palleja (charger)</div>`)[0];
+                popup_d506724bb552180602552fc3aa86c1a2.setContent(html_f1491d6b2aeb948f6d72883a97b33737);
+            
+        
+
+        marker_0f74ec2dfcd866ce84c0571b25580f87.bindPopup(popup_d506724bb552180602552fc3aa86c1a2)
+        ;
+
+        
+    
+    
+                marker_0f74ec2dfcd866ce84c0571b25580f87.setIcon(icon_00c106c6f8ca43d6dceb41cec801f3ab);
+            
+    
+            var marker_94a4d38285bc53fbd89c30b46266bd5d = L.marker(
+                [41.51182358577195, 2.1345502627626303],
+                {
+}
+            ).addTo(feature_group_3da8f88b38690ff28ccea6fa829e50d3);
+        
+    
+            var icon_fa0e62a27db41836621de14bcd6da7f3 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "bolt",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_eb13fd8784538d80ec76de67502ab052 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_911090c85c04c536a1649d678eb4400b = $(`<div id="html_911090c85c04c536a1649d678eb4400b" style="width: 100.0%; height: 100.0%;">IONITY Barcera del Valles (charger)</div>`)[0];
+                popup_eb13fd8784538d80ec76de67502ab052.setContent(html_911090c85c04c536a1649d678eb4400b);
+            
+        
+
+        marker_94a4d38285bc53fbd89c30b46266bd5d.bindPopup(popup_eb13fd8784538d80ec76de67502ab052)
+        ;
+
+        
+    
+    
+                marker_94a4d38285bc53fbd89c30b46266bd5d.setIcon(icon_fa0e62a27db41836621de14bcd6da7f3);
+            
+    
+            var marker_4756dd9e73b3ffd27f5309651cdb2b81 = L.marker(
+                [41.491422605263075, 2.1823508377517684],
+                {
+}
+            ).addTo(feature_group_3da8f88b38690ff28ccea6fa829e50d3);
+        
+    
+            var icon_a1e3c8735cab196ee6bb2290a75ec0aa = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "bolt",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_3883f8d91ffdd0f98bb4d599361f50e2 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_e50eda9d8bb6cbcde4ca5bf01c0431c9 = $(`<div id="html_e50eda9d8bb6cbcde4ca5bf01c0431c9" style="width: 100.0%; height: 100.0%;">IONITY Montcada i Reixac (charger)</div>`)[0];
+                popup_3883f8d91ffdd0f98bb4d599361f50e2.setContent(html_e50eda9d8bb6cbcde4ca5bf01c0431c9);
+            
+        
+
+        marker_4756dd9e73b3ffd27f5309651cdb2b81.bindPopup(popup_3883f8d91ffdd0f98bb4d599361f50e2)
+        ;
+
+        
+    
+    
+                marker_4756dd9e73b3ffd27f5309651cdb2b81.setIcon(icon_a1e3c8735cab196ee6bb2290a75ec0aa);
+            
+    
+            var marker_40f5aa63f8d97e502fd23393e85ac4a4 = L.marker(
+                [41.33194049366559, 2.134952349708804],
+                {
+}
+            ).addTo(feature_group_3da8f88b38690ff28ccea6fa829e50d3);
+        
+    
+            var icon_3173021c82938c29eb9b9061dd68c2b1 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "bolt",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_9fe56648bf90dc7086a6486922fb67d1 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_ca4357b561401a4e575657f1f0b15ee5 = $(`<div id="html_ca4357b561401a4e575657f1f0b15ee5" style="width: 100.0%; height: 100.0%;">Atlante - Nieves Zona Franca (charger)</div>`)[0];
+                popup_9fe56648bf90dc7086a6486922fb67d1.setContent(html_ca4357b561401a4e575657f1f0b15ee5);
+            
+        
+
+        marker_40f5aa63f8d97e502fd23393e85ac4a4.bindPopup(popup_9fe56648bf90dc7086a6486922fb67d1)
+        ;
+
+        
+    
+    
+                marker_40f5aa63f8d97e502fd23393e85ac4a4.setIcon(icon_3173021c82938c29eb9b9061dd68c2b1);
+            
+    
+            var marker_4cedde7e15890e266b877941c9ef9cb6 = L.marker(
+                [41.504070650751906, 1.883253906745552],
+                {
+}
+            ).addTo(feature_group_3da8f88b38690ff28ccea6fa829e50d3);
+        
+    
+            var icon_9bdac9e6a69b4f5fb8c7182309526370 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "bolt",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_cfcdee9ff2c4b4532c6209d1912b829e = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_d42788a201fbcad87154f4c4a12b68d0 = $(`<div id="html_d42788a201fbcad87154f4c4a12b68d0" style="width: 100.0%; height: 100.0%;">Atlante - Atlante - Nieves Sant Esteve (charger)</div>`)[0];
+                popup_cfcdee9ff2c4b4532c6209d1912b829e.setContent(html_d42788a201fbcad87154f4c4a12b68d0);
+            
+        
+
+        marker_4cedde7e15890e266b877941c9ef9cb6.bindPopup(popup_cfcdee9ff2c4b4532c6209d1912b829e)
+        ;
+
+        
+    
+    
+                marker_4cedde7e15890e266b877941c9ef9cb6.setIcon(icon_9bdac9e6a69b4f5fb8c7182309526370);
+            
+    
+            var marker_299c276de4ec2a5fd27979d186fb1ee7 = L.marker(
+                [41.42433339999999, 1.7721231],
+                {
+}
+            ).addTo(feature_group_3da8f88b38690ff28ccea6fa829e50d3);
+        
+    
+            var icon_68c4c0857d8c813cb33e05fc40f94cae = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "arrow-up",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_bfa969f6d180f93ba47c8bf2d0a4492e = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_b33917162e86a3a5aa6493ba6026be3d = $(`<div id="html_b33917162e86a3a5aa6493ba6026be3d" style="width: 100.0%; height: 100.0%;">08770 -  Barcelona (loading)</div>`)[0];
+                popup_bfa969f6d180f93ba47c8bf2d0a4492e.setContent(html_b33917162e86a3a5aa6493ba6026be3d);
+            
+        
+
+        marker_299c276de4ec2a5fd27979d186fb1ee7.bindPopup(popup_bfa969f6d180f93ba47c8bf2d0a4492e)
+        ;
+
+        
+    
+    
+                marker_299c276de4ec2a5fd27979d186fb1ee7.setIcon(icon_68c4c0857d8c813cb33e05fc40f94cae);
+            
+    
+            var marker_072ef391b71a3d1ef2ebd63e7bde4018 = L.marker(
+                [41.5178429, 2.1453861],
+                {
+}
+            ).addTo(feature_group_3da8f88b38690ff28ccea6fa829e50d3);
+        
+    
+            var icon_473b8da1656e87db42b4d9e6a544a9cc = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "arrow-up",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_1893ac91467f5cc223989a32d31c0be5 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_4d32818b0aa9856543484d7fc262ad6e = $(`<div id="html_4d32818b0aa9856543484d7fc262ad6e" style="width: 100.0%; height: 100.0%;">08210 -  Barcelona (loading)</div>`)[0];
+                popup_1893ac91467f5cc223989a32d31c0be5.setContent(html_4d32818b0aa9856543484d7fc262ad6e);
+            
+        
+
+        marker_072ef391b71a3d1ef2ebd63e7bde4018.bindPopup(popup_1893ac91467f5cc223989a32d31c0be5)
+        ;
+
+        
+    
+    
+                marker_072ef391b71a3d1ef2ebd63e7bde4018.setIcon(icon_473b8da1656e87db42b4d9e6a544a9cc);
+            
+    
+            var marker_3cc58d2496c7ebc7597d7231d48ed0b3 = L.marker(
+                [41.7889542, 1.9082042],
+                {
+}
+            ).addTo(feature_group_3da8f88b38690ff28ccea6fa829e50d3);
+        
+    
+            var icon_3b1c4e5e1055fff25dd8037c094907c2 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "arrow-up",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_d927142224aaa17d1fb10f780c17d829 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_208424b565045b01d045b33d829c23c1 = $(`<div id="html_208424b565045b01d045b33d829c23c1" style="width: 100.0%; height: 100.0%;">08650 -  Cabrianes (loading)</div>`)[0];
+                popup_d927142224aaa17d1fb10f780c17d829.setContent(html_208424b565045b01d045b33d829c23c1);
+            
+        
+
+        marker_3cc58d2496c7ebc7597d7231d48ed0b3.bindPopup(popup_d927142224aaa17d1fb10f780c17d829)
+        ;
+
+        
+    
+    
+                marker_3cc58d2496c7ebc7597d7231d48ed0b3.setIcon(icon_3b1c4e5e1055fff25dd8037c094907c2);
+            
+    
+            var marker_f49b83a6e18ddd0e39fd89bafd5b3bb8 = L.marker(
+                [41.64084249999999, 2.286344799999999],
+                {
+}
+            ).addTo(feature_group_3da8f88b38690ff28ccea6fa829e50d3);
+        
+    
+            var icon_719073fe6825af8e47020effe7e32a6e = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "arrow-up",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_feb521e34515f079627224654c8944e6 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_8ccdd0ba42ce7aa166b657fe3c8a5a32 = $(`<div id="html_8ccdd0ba42ce7aa166b657fe3c8a5a32" style="width: 100.0%; height: 100.0%;">08520 -  Granollers (loading)</div>`)[0];
+                popup_feb521e34515f079627224654c8944e6.setContent(html_8ccdd0ba42ce7aa166b657fe3c8a5a32);
+            
+        
+
+        marker_f49b83a6e18ddd0e39fd89bafd5b3bb8.bindPopup(popup_feb521e34515f079627224654c8944e6)
+        ;
+
+        
+    
+    
+                marker_f49b83a6e18ddd0e39fd89bafd5b3bb8.setIcon(icon_719073fe6825af8e47020effe7e32a6e);
+            
+    
+            var marker_4ca489f84e87c0839323295aa5d4c64c = L.marker(
+                [41.7644996, 1.900823100000001],
+                {
+}
+            ).addTo(feature_group_3da8f88b38690ff28ccea6fa829e50d3);
+        
+    
+            var icon_bee6140d4c67a779f8b5a2b43830349e = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "arrow-up",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_d701e45cda2fe961fcbbbdb77ae75b89 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_8850d22660d7127916de84f2adfb2422 = $(`<div id="html_8850d22660d7127916de84f2adfb2422" style="width: 100.0%; height: 100.0%;">08272 -  San Fructuoso de Bages (loading)</div>`)[0];
+                popup_d701e45cda2fe961fcbbbdb77ae75b89.setContent(html_8850d22660d7127916de84f2adfb2422);
+            
+        
+
+        marker_4ca489f84e87c0839323295aa5d4c64c.bindPopup(popup_d701e45cda2fe961fcbbbdb77ae75b89)
+        ;
+
+        
+    
+    
+                marker_4ca489f84e87c0839323295aa5d4c64c.setIcon(icon_bee6140d4c67a779f8b5a2b43830349e);
+            
+    
+            var marker_69a2d154cc69ef9443b3784ded413749 = L.marker(
+                [41.4528007, 2.1962535],
+                {
+}
+            ).addTo(feature_group_3da8f88b38690ff28ccea6fa829e50d3);
+        
+    
+            var icon_6eb0a024112acb82fcebf0ff90860592 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "arrow-up",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_249aad2e2438529d97156a26d81bd58c = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_ea178df0ec045e3b6e970719496a81d4 = $(`<div id="html_ea178df0ec045e3b6e970719496a81d4" style="width: 100.0%; height: 100.0%;">08033 -  Barcelona (loading)</div>`)[0];
+                popup_249aad2e2438529d97156a26d81bd58c.setContent(html_ea178df0ec045e3b6e970719496a81d4);
+            
+        
+
+        marker_69a2d154cc69ef9443b3784ded413749.bindPopup(popup_249aad2e2438529d97156a26d81bd58c)
+        ;
+
+        
+    
+    
+                marker_69a2d154cc69ef9443b3784ded413749.setIcon(icon_6eb0a024112acb82fcebf0ff90860592);
+            
+    
+            var marker_d5118d006d5212845fd8e61c6053d151 = L.marker(
+                [41.32251239999999, 2.1381923],
+                {
+}
+            ).addTo(feature_group_3da8f88b38690ff28ccea6fa829e50d3);
+        
+    
+            var icon_dd72064e5a4c0ce12977624c8b34d3b9 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "arrow-up",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_e11af55755364d1d8564d45a467f4754 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_e6e99e8fcd3d8606313835f7efb8125a = $(`<div id="html_e6e99e8fcd3d8606313835f7efb8125a" style="width: 100.0%; height: 100.0%;">08040 -  Barcelona (loading)</div>`)[0];
+                popup_e11af55755364d1d8564d45a467f4754.setContent(html_e6e99e8fcd3d8606313835f7efb8125a);
+            
+        
+
+        marker_d5118d006d5212845fd8e61c6053d151.bindPopup(popup_e11af55755364d1d8564d45a467f4754)
+        ;
+
+        
+    
+    
+                marker_d5118d006d5212845fd8e61c6053d151.setIcon(icon_dd72064e5a4c0ce12977624c8b34d3b9);
+            
+    
+            var marker_802cb7277a70ed47a293f7c38012c85e = L.marker(
+                [41.4882733, 1.905053399999999],
+                {
+}
+            ).addTo(feature_group_3da8f88b38690ff28ccea6fa829e50d3);
+        
+    
+            var icon_8cbd7f9ee220be79f3c46c3829972ac8 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "arrow-up",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_77a2cccb92c52ef3f1b69bfdfd6eabbb = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_158ede20ac07b5d3f9ead74ad9ffb484 = $(`<div id="html_158ede20ac07b5d3f9ead74ad9ffb484" style="width: 100.0%; height: 100.0%;">08760 -  Barcelona (loading)</div>`)[0];
+                popup_77a2cccb92c52ef3f1b69bfdfd6eabbb.setContent(html_158ede20ac07b5d3f9ead74ad9ffb484);
+            
+        
+
+        marker_802cb7277a70ed47a293f7c38012c85e.bindPopup(popup_77a2cccb92c52ef3f1b69bfdfd6eabbb)
+        ;
+
+        
+    
+    
+                marker_802cb7277a70ed47a293f7c38012c85e.setIcon(icon_8cbd7f9ee220be79f3c46c3829972ac8);
+            
+    
+            var marker_c31b933431e74b11bcb8612656d818d2 = L.marker(
+                [41.2941454, 2.0169223],
+                {
+}
+            ).addTo(feature_group_3da8f88b38690ff28ccea6fa829e50d3);
+        
+    
+            var icon_02711ed98fc7871ddd4db10156e9cdeb = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "arrow-up",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_a5747c9554157a79c062e60e8ecca279 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_cd5d3b7d8c9bc9bbba0dc482fdfc7998 = $(`<div id="html_cd5d3b7d8c9bc9bbba0dc482fdfc7998" style="width: 100.0%; height: 100.0%;">08850 -  Barcelona (loading)</div>`)[0];
+                popup_a5747c9554157a79c062e60e8ecca279.setContent(html_cd5d3b7d8c9bc9bbba0dc482fdfc7998);
+            
+        
+
+        marker_c31b933431e74b11bcb8612656d818d2.bindPopup(popup_a5747c9554157a79c062e60e8ecca279)
+        ;
+
+        
+    
+    
+                marker_c31b933431e74b11bcb8612656d818d2.setIcon(icon_02711ed98fc7871ddd4db10156e9cdeb);
+            
+    
+            var marker_abacc38ce568236572c6c9b278046a7c = L.marker(
+                [41.3624928, 2.1401013],
+                {
+}
+            ).addTo(feature_group_3da8f88b38690ff28ccea6fa829e50d3);
+        
+    
+            var icon_541cb4ba8ec260c7da8a6f0b9b017283 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "arrow-up",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_289f24e8bb7868680fd6f6fbd57869c7 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_dac848dcce870440c0ae46c193498978 = $(`<div id="html_dac848dcce870440c0ae46c193498978" style="width: 100.0%; height: 100.0%;">08038 -  Barcelona (loading)</div>`)[0];
+                popup_289f24e8bb7868680fd6f6fbd57869c7.setContent(html_dac848dcce870440c0ae46c193498978);
+            
+        
+
+        marker_abacc38ce568236572c6c9b278046a7c.bindPopup(popup_289f24e8bb7868680fd6f6fbd57869c7)
+        ;
+
+        
+    
+    
+                marker_abacc38ce568236572c6c9b278046a7c.setIcon(icon_541cb4ba8ec260c7da8a6f0b9b017283);
+            
+    
+            var marker_22b24a8f8dbe720d0a54a0c654f1d828 = L.marker(
+                [41.5329649, 2.1942534],
+                {
+}
+            ).addTo(feature_group_3da8f88b38690ff28ccea6fa829e50d3);
+        
+    
+            var icon_db5a3e26d4956604aee569a72325d25b = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "arrow-up",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_4e771c0276cc26c6185835c562ca9905 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_9201a3692d7a825def00800e0b9fb6af = $(`<div id="html_9201a3692d7a825def00800e0b9fb6af" style="width: 100.0%; height: 100.0%;">08130 -  Santa Perpètua de Mogoda (loading)</div>`)[0];
+                popup_4e771c0276cc26c6185835c562ca9905.setContent(html_9201a3692d7a825def00800e0b9fb6af);
+            
+        
+
+        marker_22b24a8f8dbe720d0a54a0c654f1d828.bindPopup(popup_4e771c0276cc26c6185835c562ca9905)
+        ;
+
+        
+    
+    
+                marker_22b24a8f8dbe720d0a54a0c654f1d828.setIcon(icon_db5a3e26d4956604aee569a72325d25b);
+            
+    
+            var marker_2cba28fe82fbd2c53a3ff3d3014b02e3 = L.marker(
+                [41.6881558, 2.7329239],
+                {
+}
+            ).addTo(feature_group_3da8f88b38690ff28ccea6fa829e50d3);
+        
+    
+            var icon_d99f4958a1a541bf0f6adac2dfaf74a4 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "arrow-up",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_86f640a8a3d23e140a25b4a8e1c4ad04 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_4c2567d2f831ad2f2fe102d6a22c1ef4 = $(`<div id="html_4c2567d2f831ad2f2fe102d6a22c1ef4" style="width: 100.0%; height: 100.0%;">08389 -  Palafolls (loading)</div>`)[0];
+                popup_86f640a8a3d23e140a25b4a8e1c4ad04.setContent(html_4c2567d2f831ad2f2fe102d6a22c1ef4);
+            
+        
+
+        marker_2cba28fe82fbd2c53a3ff3d3014b02e3.bindPopup(popup_86f640a8a3d23e140a25b4a8e1c4ad04)
+        ;
+
+        
+    
+    
+                marker_2cba28fe82fbd2c53a3ff3d3014b02e3.setIcon(icon_d99f4958a1a541bf0f6adac2dfaf74a4);
+            
+    
+            var marker_1a07eb106007fee465d0ffe4dcc6c159 = L.marker(
+                [41.60058799999999, 2.2543248],
+                {
+}
+            ).addTo(feature_group_3da8f88b38690ff28ccea6fa829e50d3);
+        
+    
+            var icon_733107959759644c5eb2cf7c8767ff92 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "arrow-up",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_51f8f57de99f4501782a0c7d495291e3 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_df928ba94a72267d9cb87563362e26f1 = $(`<div id="html_df928ba94a72267d9cb87563362e26f1" style="width: 100.0%; height: 100.0%;">08186 -  Barcelona (loading)</div>`)[0];
+                popup_51f8f57de99f4501782a0c7d495291e3.setContent(html_df928ba94a72267d9cb87563362e26f1);
+            
+        
+
+        marker_1a07eb106007fee465d0ffe4dcc6c159.bindPopup(popup_51f8f57de99f4501782a0c7d495291e3)
+        ;
+
+        
+    
+    
+                marker_1a07eb106007fee465d0ffe4dcc6c159.setIcon(icon_733107959759644c5eb2cf7c8767ff92);
+            
+    
+            var marker_ad71133e5e3509fceff6c94c6a3f8cff = L.marker(
+                [41.4891833, 2.1798573],
+                {
+}
+            ).addTo(feature_group_3da8f88b38690ff28ccea6fa829e50d3);
+        
+    
+            var icon_0a85087e12fb17dfeb734b46a4d1080e = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "arrow-up",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_5de172a8d2e1762b6af9fc872c4617b7 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_8b9fcd0c596c08f00d7bc20fa3eca432 = $(`<div id="html_8b9fcd0c596c08f00d7bc20fa3eca432" style="width: 100.0%; height: 100.0%;">08110 -  Moncada y Reixach (loading)</div>`)[0];
+                popup_5de172a8d2e1762b6af9fc872c4617b7.setContent(html_8b9fcd0c596c08f00d7bc20fa3eca432);
+            
+        
+
+        marker_ad71133e5e3509fceff6c94c6a3f8cff.bindPopup(popup_5de172a8d2e1762b6af9fc872c4617b7)
+        ;
+
+        
+    
+    
+                marker_ad71133e5e3509fceff6c94c6a3f8cff.setIcon(icon_0a85087e12fb17dfeb734b46a4d1080e);
+            
+    
+            var marker_336317284c67b0564283b17fb961bb4b = L.marker(
+                [41.4678123, 1.8795263],
+                {
+}
+            ).addTo(feature_group_3da8f88b38690ff28ccea6fa829e50d3);
+        
+    
+            var icon_b64bcc49c93de827e5c2917de56fface = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "arrow-up",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_548d1b637b17aee00ffc0cf3dcd5ea31 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_3f2ee764a9acc037ac00d384559b9cf9 = $(`<div id="html_3f2ee764a9acc037ac00d384559b9cf9" style="width: 100.0%; height: 100.0%;">08635 -  San Esteban de Sasroviras (loading)</div>`)[0];
+                popup_548d1b637b17aee00ffc0cf3dcd5ea31.setContent(html_3f2ee764a9acc037ac00d384559b9cf9);
+            
+        
+
+        marker_336317284c67b0564283b17fb961bb4b.bindPopup(popup_548d1b637b17aee00ffc0cf3dcd5ea31)
+        ;
+
+        
+    
+    
+                marker_336317284c67b0564283b17fb961bb4b.setIcon(icon_b64bcc49c93de827e5c2917de56fface);
+            
+    
+            var marker_118ab252e9fd4814be6b6b6bc37231ec = L.marker(
+                [41.6699821, 2.4791803],
+                {
+}
+            ).addTo(feature_group_3da8f88b38690ff28ccea6fa829e50d3);
+        
+    
+            var icon_f17a81d1e630da79b78d83f6c57ebb04 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "arrow-up",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_dc4fb5188a94c1182e4c6d3742c99869 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_6a0451d84d6b5a7010eff7dd1b96f2c2 = $(`<div id="html_6a0451d84d6b5a7010eff7dd1b96f2c2" style="width: 100.0%; height: 100.0%;">08471 -  Vallgorguina (loading)</div>`)[0];
+                popup_dc4fb5188a94c1182e4c6d3742c99869.setContent(html_6a0451d84d6b5a7010eff7dd1b96f2c2);
+            
+        
+
+        marker_118ab252e9fd4814be6b6b6bc37231ec.bindPopup(popup_dc4fb5188a94c1182e4c6d3742c99869)
+        ;
+
+        
+    
+    
+                marker_118ab252e9fd4814be6b6b6bc37231ec.setIcon(icon_f17a81d1e630da79b78d83f6c57ebb04);
+            
+    
+            var marker_0347066037ca51b4fd0dd5e057f9b01f = L.marker(
+                [41.59530599999999, 2.3045285],
+                {
+}
+            ).addTo(feature_group_3da8f88b38690ff28ccea6fa829e50d3);
+        
+    
+            var icon_2038378895897552e075a5eed1980188 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "arrow-up",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_71ad15703de83faf3e2e742d3bc488a6 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_b5c4652633649eabb2f99e94c59fb259 = $(`<div id="html_b5c4652633649eabb2f99e94c59fb259" style="width: 100.0%; height: 100.0%;">08430 -  La Roca del Vallès (loading)</div>`)[0];
+                popup_71ad15703de83faf3e2e742d3bc488a6.setContent(html_b5c4652633649eabb2f99e94c59fb259);
+            
+        
+
+        marker_0347066037ca51b4fd0dd5e057f9b01f.bindPopup(popup_71ad15703de83faf3e2e742d3bc488a6)
+        ;
+
+        
+    
+    
+                marker_0347066037ca51b4fd0dd5e057f9b01f.setIcon(icon_2038378895897552e075a5eed1980188);
+            
+    
+            var marker_98a37c7bb24e708cb3c423099085032b = L.marker(
+                [41.4850611, 1.9233214],
+                {
+}
+            ).addTo(feature_group_3da8f88b38690ff28ccea6fa829e50d3);
+        
+    
+            var icon_97247aa3f8ce5d960a44c2330db66755 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "arrow-up",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_861dcb8fd8f43e6125bb5fdee3ce7853 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_eb871d241021afa8b984d0cb17ec2f0f = $(`<div id="html_eb871d241021afa8b984d0cb17ec2f0f" style="width: 100.0%; height: 100.0%;">08760 -  Martorell (loading)</div>`)[0];
+                popup_861dcb8fd8f43e6125bb5fdee3ce7853.setContent(html_eb871d241021afa8b984d0cb17ec2f0f);
+            
+        
+
+        marker_98a37c7bb24e708cb3c423099085032b.bindPopup(popup_861dcb8fd8f43e6125bb5fdee3ce7853)
+        ;
+
+        
+    
+    
+                marker_98a37c7bb24e708cb3c423099085032b.setIcon(icon_97247aa3f8ce5d960a44c2330db66755);
+            
+    
+            var marker_0ad7554baabfb7733cd956f038ef3db8 = L.marker(
+                [41.692346, 2.732659],
+                {
+}
+            ).addTo(feature_group_3da8f88b38690ff28ccea6fa829e50d3);
+        
+    
+            var icon_571f1c2ab26dde671d11001198b5701a = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "arrow-up",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_93c4c44ff75eedb2a0e49c00900f8941 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_0c2b4383e031b0dba25c4fc4d3b12cbe = $(`<div id="html_0c2b4383e031b0dba25c4fc4d3b12cbe" style="width: 100.0%; height: 100.0%;">08490 -  Tordera (loading)</div>`)[0];
+                popup_93c4c44ff75eedb2a0e49c00900f8941.setContent(html_0c2b4383e031b0dba25c4fc4d3b12cbe);
+            
+        
+
+        marker_0ad7554baabfb7733cd956f038ef3db8.bindPopup(popup_93c4c44ff75eedb2a0e49c00900f8941)
+        ;
+
+        
+    
+    
+                marker_0ad7554baabfb7733cd956f038ef3db8.setIcon(icon_571f1c2ab26dde671d11001198b5701a);
+            
+    
+            var marker_216b72e3415ac79374885adb54e3b88b = L.marker(
+                [41.78153859999999, 1.8958142],
+                {
+}
+            ).addTo(feature_group_3da8f88b38690ff28ccea6fa829e50d3);
+        
+    
+            var icon_fa1250c115108c9e6777c943a80a710c = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "arrow-up",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_89bb564042bc78dcb33bfa84ebaeb56b = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_928940538f976047537cbee1c0c42a8e = $(`<div id="html_928940538f976047537cbee1c0c42a8e" style="width: 100.0%; height: 100.0%;">08650 -  Sallent (loading)</div>`)[0];
+                popup_89bb564042bc78dcb33bfa84ebaeb56b.setContent(html_928940538f976047537cbee1c0c42a8e);
+            
+        
+
+        marker_216b72e3415ac79374885adb54e3b88b.bindPopup(popup_89bb564042bc78dcb33bfa84ebaeb56b)
+        ;
+
+        
+    
+    
+                marker_216b72e3415ac79374885adb54e3b88b.setIcon(icon_fa1250c115108c9e6777c943a80a710c);
+            
+    
+            var marker_947d473003e2891034ca38ddc10c96cb = L.marker(
+                [41.94651040000001, 2.2843117],
+                {
+}
+            ).addTo(feature_group_3da8f88b38690ff28ccea6fa829e50d3);
+        
+    
+            var icon_d984827e57e52d58dbd570486b9031d2 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "arrow-up",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_83bf26b37fa754fbe627d9e182df967b = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_1c83b355625b559a2f2187885e1f0cbf = $(`<div id="html_1c83b355625b559a2f2187885e1f0cbf" style="width: 100.0%; height: 100.0%;">08500 -  Vic (loading)</div>`)[0];
+                popup_83bf26b37fa754fbe627d9e182df967b.setContent(html_1c83b355625b559a2f2187885e1f0cbf);
+            
+        
+
+        marker_947d473003e2891034ca38ddc10c96cb.bindPopup(popup_83bf26b37fa754fbe627d9e182df967b)
+        ;
+
+        
+    
+    
+                marker_947d473003e2891034ca38ddc10c96cb.setIcon(icon_d984827e57e52d58dbd570486b9031d2);
+            
+    
+            var marker_65569e53ba86e6192bff7b2248ac9fd3 = L.marker(
+                [41.6565259, 1.8565696],
+                {
+}
+            ).addTo(feature_group_3da8f88b38690ff28ccea6fa829e50d3);
+        
+    
+            var icon_afe5bf73fa31b4ad81501b752004dc0f = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "arrow-up",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_72948e158dd91c2890cd91b3dcc2cfb9 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_08bb81a42d0d745c57a01e564ed571b4 = $(`<div id="html_08bb81a42d0d745c57a01e564ed571b4" style="width: 100.0%; height: 100.0%;">08295 -  Sant Vicenç de Castellet (loading)</div>`)[0];
+                popup_72948e158dd91c2890cd91b3dcc2cfb9.setContent(html_08bb81a42d0d745c57a01e564ed571b4);
+            
+        
+
+        marker_65569e53ba86e6192bff7b2248ac9fd3.bindPopup(popup_72948e158dd91c2890cd91b3dcc2cfb9)
+        ;
+
+        
+    
+    
+                marker_65569e53ba86e6192bff7b2248ac9fd3.setIcon(icon_afe5bf73fa31b4ad81501b752004dc0f);
+            
+    
+            var marker_5f3d3f1274bc4a511e4f40a091d75ae1 = L.marker(
+                [41.4587202, 2.1933917],
+                {
+}
+            ).addTo(feature_group_3da8f88b38690ff28ccea6fa829e50d3);
+        
+    
+            var icon_07dc43306dec9ed9a07b46650d947cd9 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "arrow-up",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_38651e4bdceb6d014233a22ebf3f3df4 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_7c707a1d1fa4dd3f49d3ad53c8a81c2b = $(`<div id="html_7c707a1d1fa4dd3f49d3ad53c8a81c2b" style="width: 100.0%; height: 100.0%;">08924 -  Santa Coloma de Gramenet (loading)</div>`)[0];
+                popup_38651e4bdceb6d014233a22ebf3f3df4.setContent(html_7c707a1d1fa4dd3f49d3ad53c8a81c2b);
+            
+        
+
+        marker_5f3d3f1274bc4a511e4f40a091d75ae1.bindPopup(popup_38651e4bdceb6d014233a22ebf3f3df4)
+        ;
+
+        
+    
+    
+                marker_5f3d3f1274bc4a511e4f40a091d75ae1.setIcon(icon_07dc43306dec9ed9a07b46650d947cd9);
+            
+    
+            var marker_ce3ad177c0f9c5f267613b303fa35a82 = L.marker(
+                [41.45648920000001, 2.2277434],
+                {
+}
+            ).addTo(feature_group_3da8f88b38690ff28ccea6fa829e50d3);
+        
+    
+            var icon_aa636b0be49d06dbe617ef26ed618a87 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "arrow-up",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_afb1e855e1619a97a98d239a7e7a96de = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_6f13a4ce4cdc9506598cc2e4d5f5f510 = $(`<div id="html_6f13a4ce4cdc9506598cc2e4d5f5f510" style="width: 100.0%; height: 100.0%;">08197 -  Badalona (loading)</div>`)[0];
+                popup_afb1e855e1619a97a98d239a7e7a96de.setContent(html_6f13a4ce4cdc9506598cc2e4d5f5f510);
+            
+        
+
+        marker_ce3ad177c0f9c5f267613b303fa35a82.bindPopup(popup_afb1e855e1619a97a98d239a7e7a96de)
+        ;
+
+        
+    
+    
+                marker_ce3ad177c0f9c5f267613b303fa35a82.setIcon(icon_aa636b0be49d06dbe617ef26ed618a87);
+            
+    
+            var marker_b1add27d7b8fb70e8d854232b0acd3b3 = L.marker(
+                [41.461731, 2.265106],
+                {
+}
+            ).addTo(feature_group_3da8f88b38690ff28ccea6fa829e50d3);
+        
+    
+            var icon_138c12f6f29b1aa562cde9bdb64cc140 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "arrow-up",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_c22c8a0096f70701c84975f832f6d9d9 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_f62b9977f95a7b46d0b35bb7ce72bae0 = $(`<div id="html_f62b9977f95a7b46d0b35bb7ce72bae0" style="width: 100.0%; height: 100.0%;">08911 -  Badalona (loading)</div>`)[0];
+                popup_c22c8a0096f70701c84975f832f6d9d9.setContent(html_f62b9977f95a7b46d0b35bb7ce72bae0);
+            
+        
+
+        marker_b1add27d7b8fb70e8d854232b0acd3b3.bindPopup(popup_c22c8a0096f70701c84975f832f6d9d9)
+        ;
+
+        
+    
+    
+                marker_b1add27d7b8fb70e8d854232b0acd3b3.setIcon(icon_138c12f6f29b1aa562cde9bdb64cc140);
+            
+    
+            feature_group_3da8f88b38690ff28ccea6fa829e50d3.addTo(map_a39822e877906ac821d0dce03fec9d25);
+        
+    
+            var layer_control_a4630ed2833041cdbe73b5915af71ac5_layers = {
+                base_layers : {
+                    "cartodbpositron" : tile_layer_bb077625569d76ed71352354d2551c0f,
+                },
+                overlays :  {
+                    "Route 1" : feature_group_feb3bd877fe6e160e8f0b535549cd6e3,
+                    "Nodes" : feature_group_3da8f88b38690ff28ccea6fa829e50d3,
+                },
+            };
+            let layer_control_a4630ed2833041cdbe73b5915af71ac5 = L.control.layers(
+                layer_control_a4630ed2833041cdbe73b5915af71ac5_layers.base_layers,
+                layer_control_a4630ed2833041cdbe73b5915af71ac5_layers.overlays,
+                {
+  "position": "topright",
+  "collapsed": true,
+  "autoZIndex": true,
+}
+            ).addTo(map_a39822e877906ac821d0dce03fec9d25);
+
+        
+</script>
+</html>

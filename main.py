@@ -1,111 +1,145 @@
-from src.vrp_instance import VRPInstance
-from src.vrp_solution import VRPSolution
-from src.algorithm.exact_model import exact_model
-from src.algorithm.nearest_neighbour import nearest_neighbour
-from src.algorithm.two_opt import two_opt
-import folium as folium
-from folium.plugins import MarkerCluster
+from src.models.vrp_instance import VRPInstance
+from src.models.vrp_solution import VRPSolution
+
+# Algorithm imports
+from src.algorithm.nearest_neighbour_single_truck import nearest_neighbour_single_truck as nn_single
+from src.algorithm.nearest_neighbour_multi_truck import nearest_neighbour_multi_truck as nn_multi
+from src.algorithm.two_opt_single_truck import two_opt_single_truck as two_opt_single
+from src.algorithm.two_opt_multi_truck import two_opt_multi_truck as two_opt_multi
+from src.algorithm.or_tools import exact_model_or_tools
+
 import pickle
 from pathlib import Path
 import time
-import os
 import pandas as pd
 
-# Creamos una lista de diccionarios
-summary_results = []
 
-dataset_folder = Path('/Users/nataliaalvareztejero/Desktop/CLASE/MASTER/SEGUNDO/Truckster/Datos/TFM/datasets')
-results_folder = Path('/Users/nataliaalvareztejero/Desktop/CLASE/MASTER/SEGUNDO/Truckster/Datos/TFM/results/')
-csv_file = results_folder / 'solutions_metadata.csv'
-
-# Iterate over all pickle files in the folder
-for pkl_file in dataset_folder.glob('*.pkl'):
-    
-    print(f'Processing {pkl_file.name}')
-
-    # Load dataset
-    with open(pkl_file, 'rb') as f:
-        data = pickle.load(f)
-
-    # Create VRP instance
-    instance = VRPInstance(
-        locations=data['locations'],
-        distance_matrix=data['distance_matrix'],
-        time_matrix=data['time_matrix'],
-        charging_costs=data['chargin_cost'],  # verify spelling
-        cost_matrix=data['cost_matrix']
-    )
-    instance.plot_vrp_instance_default_icons(
-        save_path=os.path.join(dataset_folder, pkl_file.stem + '_instance.html')
-    )
-
-    # Solve using exact_model and measure execution time
+# ---------------------------
+# Helper function
+# ---------------------------
+def run_algorithm(instance: VRPInstance, algorithm_func, algo_name: str,
+                  results_folder: Path, instance_name: str,
+                  previous_solution: VRPSolution = None) -> tuple[VRPSolution, dict]:
+    """
+    Run an algorithm on a VRP instance, measure execution time, save and plot solution.
+    Optionally, pass previous_solution (for heuristics like 2-opt).
+    """
     start_time = time.perf_counter()
-    solution = exact_model(instance)
-    exec_time = time.perf_counter() - start_time
 
-    # Si no hay solución, saltar esta instancia para Gurobi
-    if solution is None:
-        print(f"Gurobi no encontró solución factible para {pkl_file.stem}.")
+    if previous_solution is not None:
+        solution = algorithm_func(previous_solution)
     else:
-        solution.execution_time = exec_time
-        solution.save(
-            filepath=os.path.join(results_folder, 'gurobi', pkl_file.stem + '_solution.pkl')
-        )
-        solution.plot_vrp_solution(
-            save_path=os.path.join(results_folder, 'gurobi', pkl_file.stem + '_solution.html')
-        )
-        summary_results.append({
-            'instance_name': pkl_file.stem,
-            'algorithm': 'gurobi',
-            'execution_time': exec_time,
-            'cost': solution.total_cost
-        })
+        solution = algorithm_func(instance)
 
-
-    # Solve using nearest_neighbour and measure execution time        
-    start_time = time.perf_counter()
-    solution = nearest_neighbour(instance)
     exec_time = time.perf_counter() - start_time
-
-    # Save solution pickle
     solution.execution_time = exec_time
-    solution.save(
-        filepath = os.path.join(results_folder, 'nearest_neighbour', pkl_file.stem + '_solution.pkl')
-        )
-    solution.plot_vrp_solution(save_path=os.path.join(results_folder, 'nearest_neighbour', pkl_file.stem + '_solution.html'))
 
+    # Create algorithm-specific folder if it does not exist
+    algo_folder = results_folder / algo_name
+    algo_folder.mkdir(parents=True, exist_ok=True)
 
-    summary_results.append({
-        'instance_name': pkl_file.stem,
-        'algorithm': 'nearest_neighbour',
+    # Save solution
+    solution.save(filepath=algo_folder / f"{instance_name}_solution.pkl")
+
+    # Plot solution
+    solution.plot_vrp_solution(save_path=algo_folder / f"{instance_name}_solution.html")
+
+    # Return solution and summary dict
+    summary = {
+        'instance_name': instance_name,
+        'algorithm': algo_name,
         'execution_time': exec_time,
-        'cost': solution.total_cost
-    })
+        'cost': solution.total_cost,
+        'total_distance': solution.total_distance,
+        'feasible': solution.complete_feasibility_flag,
+        'num_vehicles': len(solution.routes)
+    }
 
-    # Solve using 2-opt and measure execution time        
-    start_time = time.perf_counter()
-    solution = two_opt(solution)
-    exec_time = time.perf_counter() - start_time
+    return solution, summary
 
-    # Save solution pickle
-    solution.execution_time = exec_time
-    solution.save(
-        filepath = os.path.join(results_folder, 'two_opt', pkl_file.stem + '_solution.pkl')
+
+# ---------------------------
+# Main function
+# ---------------------------
+def main(dataset_folder: str,
+         results_folder: str,
+         scenario: str = 'single_truck',
+         max_km_per_vehicle: float | None = None) -> None:
+
+    dataset_folder = Path(dataset_folder)
+    results_folder = Path(results_folder)
+    results_folder.mkdir(parents=True, exist_ok=True)
+
+    summary_results = []
+
+    # Define scenario-specific algorithms
+    if scenario == 'single_truck':
+        algorithms = [
+            ('or_tools', exact_model_or_tools),
+            ('nearest_neighbour_single_truck', nn_single),
+            ('two_opt_single_truck', two_opt_single)
+    ]
+        max_km_per_vehicle = None  # no distance limit
+    elif scenario == 'multi_truck':
+        algorithms = [
+            ('or_tools', exact_model_or_tools),
+            ('nearest_neighbour_multi_truck', nn_multi),
+            ('two_opt_multi_truck', two_opt_multi)        ]
+    else:
+        raise ValueError(f"Unknown scenario: {scenario}")
+
+    # Iterate over all pickle files
+    for pkl_file in dataset_folder.glob('*.pkl'):
+        print(f"Processing {pkl_file.name}")
+
+        # Load dataset
+        with open(pkl_file, 'rb') as f:
+            data = pickle.load(f)
+
+        # Create VRP instance
+        instance = VRPInstance(
+            locations=data['locations'],
+            distance_matrix=data['distance_matrix'],
+            time_matrix=data['time_matrix'],
+            charging_cost=data.get('chargin_cost', {}),  # verify spelling
+            cost_matrix=data['cost_matrix'],
+            max_km_per_vehicle=max_km_per_vehicle
         )
-    solution.plot_vrp_solution(save_path=os.path.join(results_folder, 'two_opt', pkl_file.stem + '_solution.html'))
 
-    summary_results.append({
-        'instance_name': pkl_file.stem,
-        'algorithm': 'two_opt',
-        'execution_time': exec_time,
-        'cost': solution.total_cost
-    })
+        # Plot instance once
+        instance.plot_vrp_instance(save_path=dataset_folder / f"{pkl_file.stem}_instance.html")
+
+        # Run algorithms sequentially, optionally chaining previous solution
+        prev_solution = None
+        for algo_name, algo_func in algorithms:
+            prev_solution, summary = run_algorithm(
+                instance,
+                algorithm_func=algo_func,
+                algo_name=algo_name,
+                results_folder=results_folder,
+                instance_name=pkl_file.stem,
+                previous_solution=prev_solution
+            )
+            summary_results.append(summary)
+            
+
+    # Save summary CSV
+    df = pd.DataFrame(summary_results)
+    print(df)
+    csv_file = results_folder / 'results_summary400.csv'
+    df.to_csv(csv_file, index=False, encoding='utf-8')
 
 
-# Convertimos a DataFrame
-df = pd.DataFrame(summary_results)
-print(df)
-df.to_csv("/Users/nataliaalvareztejero/Desktop/CLASE/MASTER/SEGUNDO/Truckster/Datos/TFM/resultados.csv", index=False, encoding="utf-8")
-
+# ---------------------------
+# Run script
+# ---------------------------
+if __name__ == "__main__":
+    # Example usage:
+    # scenario can be 'single_truck' or 'multi_truck'
+    main(
+        dataset_folder='C:/Users/alex/Desktop/Natalia/camion_electrico_heuristicas_restricción_max_time/camion_electrico/datasets/sinteticos_10_15_20',
+        results_folder='C:/Users/alex/Desktop/Natalia/camion_electrico_heuristicas_restricción_max_time/camion_electrico/datasets/sinteticos_10_15_20/results',
+        scenario='multi_truck',
+        max_km_per_vehicle=400
+    )
 

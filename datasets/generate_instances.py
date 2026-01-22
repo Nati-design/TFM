@@ -247,14 +247,14 @@ def generate_datasets(fixed_locations, variable_locations,
             
             distance_matrix = calculate_distance_matrix(dataset_locations)
             time_matrix = calculate_time_matrix(distance_matrix)
-            chargin_cost = calculate_charging_cost_vector(dataset_locations)
+            g = calculate_charging_cost_vector(dataset_locations)
             cost_matrix = calculate_cost_matrix(distance_matrix)
             
             dataset = {
                 "locations": {loc['name']: loc for loc in dataset_locations},
                 "distance_matrix": distance_matrix,
                 "time_matrix": time_matrix,
-                "chargin_cost": chargin_cost,
+                "g": g,
                 "cost_matrix": cost_matrix
             }
             
