@@ -1,18 +1,15 @@
 # TFM
-Código usado en el TFM: "Comparación de técnicas exactas y heurísticas para la optimización de rutas de empresas de reparto de última milla".
+Código usado en el TFM: "Optimización de rutas de camión eléctrico: comparación de métodos exactos y heurísticos".
 
-1. En la carpeta datasets podemos encontrar los .pkl empleados para cada instancia y un .html que permite visualizar los datos en el mapa.
-   Además, tenemos un programa generate_instances.py que permite generar las diferentes instancias.
+1. En la carpeta datasets podemos encontrar:
+	a) reales: carpeta con las instancias reales y los resultados de la ejecución de los tres métodos (nearest_neighbour, or_tools y two_opt).
+	b) sintéticos_10_15_20: carpeta con las instancias sintéticas y los resultados de la ejecución de los tres métodos (nearest_neighbour, or_tools y two_opt ).
+	c) generate_instances.py: programa para generar las instancias.
+   
 2. En la carpeta src podemos encontrar:
+	a) algorithm: carpeta con el programa para los tres métodos (nearest_neighbour, or_tools y two_opt, y sus variantes para múltiples vehículos.)
+	b) models: una carpeta con los programas vrp_instance.py, utilizado para crear los archivos .html de cada instancia, vrp_solution.py, utilizado para crear los archivos .pkl y .html de los resultados. También se definen funciones para comprobar la factibilidad de las soluciones.
+   
+4. main.py: programa principal que llama a todos los algoritmos. 
 
-   a) Una carpeta llamada algorithm con los programas exact_model.py, que calcula la solución con gurobi, nearest_neighbour.py, calcula la solución con el algoritmo del vecino más próximo, y two_opt.py, que la calcula para el algoritmo 2-opt.
-   
-   b) vrp_instance.py, utilizado para crear los archivos .html de cada instancia.
-   
-   c) vrp_solution.py, utilizado para crear los archivos .pkl y .html de los resultados. También se definen funciones para comprobar la factibilidad de las soluciones.
-   
-4. main.py llama a los algoritmos y a los programas de representación para resolver el problema del EVRP. 
-5. resultados.csv, archivo generado para comparar todas las soluciones de los algoritmos y sus tiempos de ejecución.   
-6. En la carpeta results tenemos los resultados de cada método: gurobi, vecino más próximo y 2-opt.
-   Tenemos los resultados en un archivo .pkl y en un .html que permite su visualización.
    
