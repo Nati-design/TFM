@@ -13,7 +13,7 @@ Código usado en el TFM: "Optimización de rutas de camión eléctrico: comparac
 	
 	a) algorithm: carpeta con el programa para los tres métodos (nearest_neighbour, or_tools y two_opt, y sus variantes para múltiples vehículos.)
 	
-	b) models: una carpeta con los programas vrp_instance.py, utilizado para crear los archivos .html de cada instancia, vrp_solution.py, utilizado para crear los archivos .pkl y .html de los resultados. También se definen funciones para comprobar la factibilidad de las soluciones.
+	b) models: una carpeta con los programas vrp_instance.py, utilizado para crear los archivos .html de cada instancia, y vrp_solution.py, utilizado para crear los archivos .pkl y .html de los resultados. También se definen funciones para comprobar la factibilidad de las soluciones.
    
 4. main.py: programa principal que llama a todos los algoritmos. 
 
